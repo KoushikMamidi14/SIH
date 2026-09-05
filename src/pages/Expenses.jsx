@@ -23,9 +23,9 @@ const Expenses = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const [formData, setFormData] = useState({
-    category: 'Raw Materials',
-    amount: 2500,
-    description: 'Bulk raw mango purchase from local wholesale yard'
+    category: '',
+    amount: '',
+    description: ''
   });
 
   const totalExpenseAmount = expenses.reduce((acc, e) => acc + Number(e.amount || 0), 0);
@@ -43,9 +43,9 @@ const Expenses = () => {
     await addExpense(formData);
     setModalOpen(false);
     setFormData({
-      category: 'Raw Materials',
-      amount: 2500,
-      description: 'Raw supplies'
+      category: '',
+      amount: '',
+      description: ''
     });
   };
 

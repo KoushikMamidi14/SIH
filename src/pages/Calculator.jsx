@@ -17,13 +17,13 @@ import {
 const Calculator = () => {
   const { t, currentLanguage } = useLanguage();
 
-  const [productName, setProductName] = useState('Avakaya (Mango) Pickle - 1kg');
-  const [materialCost, setMaterialCost] = useState(80);
-  const [labourCost, setLabourCost] = useState(15);
-  const [packagingCost, setPackagingCost] = useState(12);
-  const [transportCost, setTransportCost] = useState(8);
-  const [otherCost, setOtherCost] = useState(5);
-  const [sellingPrice, setSellingPrice] = useState(180);
+  const [productName, setProductName] = useState('');
+  const [materialCost, setMaterialCost] = useState(0);
+  const [labourCost, setLabourCost] = useState(0);
+  const [packagingCost, setPackagingCost] = useState(0);
+  const [transportCost, setTransportCost] = useState(0);
+  const [otherCost, setOtherCost] = useState(0);
+  const [sellingPrice, setSellingPrice] = useState(0);
 
   const [result, setResult] = useState(null);
   const [aiExplanation, setAiExplanation] = useState(null);

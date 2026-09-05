@@ -27,14 +27,14 @@ const BusinessDiscovery = () => {
   const navigate = useNavigate();
 
   // Form State
-  const [budget, setBudget] = useState(40000);
-  const [location, setLocation] = useState('Tenali');
-  const [state, setState] = useState('Andhra Pradesh');
-  const [skills, setSkills] = useState('Cooking, pickling, food preservation, traditional recipes');
-  const [interests, setInterests] = useState('Homemade agro-products, retail food, regional spices');
-  const [category, setCategory] = useState('Food Products');
-  const [expectedIncome, setExpectedIncome] = useState(15000);
-  const [riskPreference, setRiskPreference] = useState('Moderate');
+  const [budget, setBudget] = useState('');
+  const [location, setLocation] = useState('');
+  const [state, setState] = useState('');
+  const [skills, setSkills] = useState('');
+  const [interests, setInterests] = useState('');
+  const [category, setCategory] = useState('');
+  const [expectedIncome, setExpectedIncome] = useState('');
+  const [riskPreference, setRiskPreference] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [recommendation, setRecommendation] = useState(null);

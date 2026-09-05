@@ -27,17 +27,12 @@ const Landing = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 text-white p-8 md:p-14 shadow-xl shadow-orange-500/15">
         <div className="relative z-10 max-w-3xl space-y-6">
-          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold border border-white/30 text-white">
-            <Sparkles className="w-4 h-4 text-amber-200" />
-            <span>{t.hero?.badge || 'Smart India Hackathon Prototype'}</span>
-          </div>
-
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-            {t.hero?.title || 'Empowering Rural Entrepreneurs with Local AI'}
+            {t.hero?.title}
           </h1>
 
           <p className="text-base sm:text-xl text-orange-100 font-medium leading-relaxed max-w-2xl">
-            {t.hero?.subtitle || 'From choosing the right business in your village to pricing, sales tracking, government schemes, and marketing in your own mother tongue.'}
+            {t.hero?.subtitle}
           </p>
 
           {/* Action CTAs */}
@@ -47,7 +42,7 @@ const Landing = () => {
               className="px-6 py-3.5 bg-white hover:bg-orange-50 text-orange-600 font-bold rounded-2xl shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-base"
             >
               <Compass className="w-5 h-5 text-orange-600" />
-              <span>{t.hero?.ctaDiscovery || 'Discover Your Business Idea'}</span>
+              <span>{t.hero?.ctaDiscovery}</span>
               <ArrowRight className="w-4 h-4 text-orange-500" />
             </Link>
 
@@ -56,7 +51,7 @@ const Landing = () => {
               className="px-6 py-3.5 bg-orange-700/60 hover:bg-orange-700/80 text-white font-bold rounded-2xl border border-white/20 backdrop-blur-sm transition-all flex items-center justify-center gap-2 text-base"
             >
               <LayoutDashboard className="w-5 h-5 text-amber-300" />
-              <span>{t.hero?.ctaDemo || 'View Demo Dashboard'}</span>
+              <span>{t.hero?.ctaDemo}</span>
             </Link>
           </div>
         </div>
@@ -69,20 +64,20 @@ const Landing = () => {
       <section className="space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Tailored For Rural Micro-Enterprises
+            {t.landing?.sectorsTitle}
           </h2>
           <p className="text-sm sm:text-base text-slate-500">
-            Designed specifically for local production, cottage industries, and village commerce in Andhra Pradesh & across India.
+            {t.landing?.sectorsSubtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {[
-            { label: 'Homemade Pickles & Podis', icon: '🥭', count: 'High Demand' },
-            { label: 'Dairy & Milk Farming', icon: '🥛', count: 'Daily Cashflow' },
-            { label: 'Tailoring & Garments', icon: '🧵', count: 'Low Capital' },
-            { label: 'Handicrafts & Jute Bags', icon: '🧺', count: 'Govt Subsidy' },
-            { label: 'Village Kirana & Stores', icon: '🏪', count: 'Essential Retail' },
+            { label: t.landing?.sectorPickles, icon: '🥭', count: t.landing?.highDemand },
+            { label: t.landing?.sectorDairy, icon: '🥛', count: t.landing?.dailyCashflow },
+            { label: t.landing?.sectorTailoring, icon: '🧵', count: t.landing?.lowCapital },
+            { label: t.landing?.sectorHandicrafts, icon: '🧺', count: t.landing?.govtSubsidy },
+            { label: t.landing?.sectorKirana, icon: '🏪', count: t.landing?.essentialRetail },
           ].map((item, i) => (
             <div key={i} className="p-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:border-orange-300 transition-all text-center">
               <span className="text-3xl block mb-2">{item.icon}</span>
@@ -100,26 +95,26 @@ const Landing = () => {
         <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
             <Compass className="w-3.5 h-3.5" />
-            <span>Phase 1: Business Starter</span>
+            <span>{t.landing?.phaseOne}</span>
           </div>
           <h3 className="text-xl font-bold text-slate-900">
-            Before You Start: AI Feasibility & Location Analysis
+            {t.landing?.phaseOneTitle}
           </h3>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Enter your available budget (e.g. ₹20,000 - ₹1,00,000), location/town, skills, and interests. Our AI recommends practical businesses, breaks down initial equipment costs, operating expenses, and matching government subsidies.
+            {t.landing?.phaseOneDescription}
           </p>
           <ul className="space-y-2 text-xs text-slate-600 pt-2">
             <li className="flex items-center gap-2 font-medium">
               <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-              <span>Estimated startup budget & monthly profit calculations</span>
+              <span>{t.landing?.phaseOneBulletOne}</span>
             </li>
             <li className="flex items-center gap-2 font-medium">
               <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-              <span>Location suitability & target market breakdown</span>
+              <span>{t.landing?.phaseOneBulletTwo}</span>
             </li>
             <li className="flex items-center gap-2 font-medium">
               <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-              <span>Direct step-by-step starting checklist</span>
+              <span>{t.landing?.phaseOneBulletThree}</span>
             </li>
           </ul>
         </div>
@@ -127,26 +122,26 @@ const Landing = () => {
         <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
             <LayoutDashboard className="w-3.5 h-3.5" />
-            <span>Phase 2: Business Management</span>
+            <span>{t.landing?.phaseTwo}</span>
           </div>
           <h3 className="text-xl font-bold text-slate-900">
-            After You Start: Daily AI Business Operating System
+            {t.landing?.phaseTwoTitle}
           </h3>
           <p className="text-sm text-slate-600 leading-relaxed">
-            A simplified, voice-enabled assistant designed for first-time digital entrepreneurs. Track daily sales, log expenses, compute exact profit margins, and create regional marketing messages.
+            {t.landing?.phaseTwoDescription}
           </p>
           <ul className="space-y-2 text-xs text-slate-600 pt-2">
             <li className="flex items-center gap-2 font-medium">
               <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-              <span>Deterministic pricing and break-even calculations (no LLM math errors)</span>
+              <span>{t.landing?.phaseTwoBulletOne}</span>
             </li>
             <li className="flex items-center gap-2 font-medium">
               <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-              <span>One-click WhatsApp marketing copy in Telugu, Hindi & English</span>
+              <span>{t.landing?.phaseTwoBulletTwo}</span>
             </li>
             <li className="flex items-center gap-2 font-medium">
               <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-              <span>Verified Government schemes (PMEGP, MUDRA, Vishwakarma, Udyam)</span>
+              <span>{t.landing?.phaseTwoBulletThree}</span>
             </li>
           </ul>
         </div>
@@ -157,13 +152,13 @@ const Landing = () => {
         <div className="space-y-2 text-center md:text-left">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 bg-amber-100/80 px-2.5 py-1 rounded-full">
             <Store className="w-3.5 h-3.5 text-orange-600" />
-            <span>Featured Demo Persona</span>
+            <span>{t.landing?.demoBadge}</span>
           </div>
           <h4 className="text-lg sm:text-xl font-bold text-slate-900">
-            Lakshmi Homemade Foods — Tenali, Andhra Pradesh
+            {t.landing?.demoTitle}
           </h4>
           <p className="text-xs sm:text-sm text-slate-600 max-w-xl">
-            Preloaded with authentic micro-business metrics: ₹120 cost per kg, ₹180 selling price, ₹35,200 monthly sales, and ₹13,900 net profit. Test every feature live without manual data entry.
+            {t.landing?.demoDescription}
           </p>
         </div>
 
@@ -171,7 +166,7 @@ const Landing = () => {
           to="/dashboard"
           className="px-5 py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl shadow-sm text-sm whitespace-nowrap flex items-center gap-2 transition-colors"
         >
-          <span>Open Live Demo</span>
+          <span>{t.landing?.openDemo}</span>
           <ArrowRight className="w-4 h-4" />
         </Link>
       </section>

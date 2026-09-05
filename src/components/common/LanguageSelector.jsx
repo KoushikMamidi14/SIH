@@ -3,11 +3,11 @@ import { useLanguage } from '../../context/LanguageContext.jsx';
 import { Globe } from 'lucide-react';
 
 const LanguageSelector = ({ variant = 'default' }) => {
-  const { currentLanguage, changeLanguage, languages } = useLanguage();
+  const { currentLanguage, changeLanguage, languages, t } = useLanguage();
 
   return (
     <div className="relative inline-flex items-center">
-      <label htmlFor="language-select" className="sr-only">Select Language</label>
+      <label htmlFor="language-select" className="sr-only">{t.nav?.selectLanguage}</label>
       <div className="flex items-center gap-1.5 bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 shadow-sm text-sm font-medium text-slate-700 hover:border-orange-400 transition-colors">
         <Globe className="w-4 h-4 text-orange-500 flex-shrink-0" />
         <select

@@ -21,15 +21,30 @@ const Assistant = () => {
   const { t, currentLanguage } = useLanguage();
   const { business, products, sales, expenses } = useBusiness();
 
+  const getWelcomeMessage = (language) => {
+    if (language === 'te') {
+      return 'నమస్కారం! నేను మీ వ్యాపారమిత్ర AI సహాయకుడిని. అమ్మకాలు, ధరలు, ప్రభుత్వ పథకాలు లేదా మార్కెటింగ్ గురించి నన్ను అడగవచ్చు. మాట్లాడటానికి మైక్ బటన్ నొక్కండి.';
+    }
+    if (language === 'hi') {
+      return 'नमस्ते! मैं आपका व्यापारमित्र एआई सहायक हूँ। बिक्री, मूल्य निर्धारण, सरकारी योजनाओं या प्रचार के बारे में मुझसे पूछें।';
+    }
+    if (language === 'ta') {
+      return 'வணக்கம்! நான் உங்கள் வியாபாரமித்ரா AI உதவியாளர். விற்பனை, விலை, அரசு திட்டங்கள் அல்லது விளம்பரம் பற்றி என்னிடம் கேளுங்கள்.';
+    }
+    if (language === 'kn') {
+      return 'ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ ವ್ಯಾಪಾರಮಿತ್ರ AI ಸಹಾಯಕ. ಮಾರಾಟ, ಬೆಲೆ, ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು ಅಥವಾ ಮಾರುಕಟ್ಟೆ ಕುರಿತು ನನ್ನನ್ನು ಕೇಳಿ.';
+    }
+    if (language === 'ml') {
+      return 'നമസ്കാരം! ഞാൻ നിങ്ങളുടെ വ്യാപാരമിത്ര AI സഹായി. വിൽപ്പന, വില, സർക്കാർ പദ്ധതികൾ അല്ലെങ്കിൽ വിപണനം സംബന്ധിച്ച് ചോദിക്കൂ.';
+    }
+    return 'Hello! I am your VyaparMitra AI business partner. Ask me about sales, prices, government schemes, or marketing in your language.';
+  };
+
   const [messages, setMessages] = useState([
     {
       id: 1,
       sender: 'ai',
-      text: currentLanguage === 'te'
-        ? "నమస్కారం! నేను మీ వ్యాపారమిత్ర AI సహాయకుడిని. లక్ష్మి హోమ్‌మేడ్ ఫుడ్స్ అమ్మకాలను పెంచడం, ధరల సమీక్ష, ప్రభుత్వ సబ్సిడీలు లేదా మార్కెటింగ్ గురించి నన్ను ఏదైనా అడగవచ్చు. మాట్లాడటానికి మైక్ బటన్ నొక్కండి."
-        : currentLanguage === 'hi'
-        ? "नमस्ते! मैं आपका व्यापारमित्र एआई सहायक हूँ। लक्ष्मी होममेड फूड्स की बिक्री बढ़ाने, मूल्य निर्धारण, सरकारी सब्सिडी या प्रचार के बारे में आप मुझसे पूछ सकते हैं।"
-        : "Hello! I am your VyaparMitra AI business partner. I have full context of Lakshmi Homemade Foods (₹35,200 monthly sales, ₹13,900 net profit). Ask me how to grow sales, check margins, find loans, or generate marketing copy in your language."
+      text: getWelcomeMessage(currentLanguage)
     }
   ]);
 
@@ -45,6 +60,13 @@ const Assistant = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, loading]);
+
+  useEffect(() => {
+    setMessages(prev => prev.length === 1
+      ? [{ ...prev[0], text: getWelcomeMessage(currentLanguage) }]
+      : prev
+    );
+  }, [currentLanguage]);
 
   const quickPrompts = [
     t.assistant?.q1 || "How can I increase my mango pickle sales this month?",

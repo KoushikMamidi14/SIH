@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../common/Navbar.jsx';
 import Sidebar from '../common/Sidebar.jsx';
+import MobileNav from '../common/MobileNav.jsx';
 
 const AppLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -26,6 +27,7 @@ const AppLayout = () => {
           </div>
         </main>
       </div>
+      <MobileNav />
     </div>
   );
 };

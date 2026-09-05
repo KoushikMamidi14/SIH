@@ -9,11 +9,11 @@ const Onboarding = () => {
   const { business, updateBusiness } = useBusiness();
   const navigate = useNavigate();
 
-  const [bizName, setBizName] = useState(business?.name || 'Lakshmi Homemade Foods');
-  const [category, setCategory] = useState(business?.category || 'Food Products');
-  const [location, setLocation] = useState(business?.location || 'Tenali, Guntur District');
-  const [state, setState] = useState(business?.state || 'Andhra Pradesh');
-  const [description, setDescription] = useState(business?.description || 'Authentic traditional pickles, spices and food items prepared hygienically.');
+  const [bizName, setBizName] = useState('');
+  const [category, setCategory] = useState('');
+  const [location, setLocation] = useState('');
+  const [state, setState] = useState('');
+  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {

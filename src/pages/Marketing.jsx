@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { useBusiness } from '../context/BusinessContext.jsx';
 import { aiService } from '../services/api.js';
@@ -20,23 +20,25 @@ const Marketing = () => {
   const { t, currentLanguage, languages } = useLanguage();
   const { business, products } = useBusiness();
 
-  const [product, setProduct] = useState('Avakaya (Mango) Pickle - 1kg');
-  const [targetCustomer, setTargetCustomer] = useState('Local households and weekly market shoppers');
-  const [tone, setTone] = useState('Friendly & Festive');
-  const [discount, setDiscount] = useState('Special Festival Discount: 10% off on 2kg orders!');
+  const [product, setProduct] = useState('');
+  const [targetCustomer, setTargetCustomer] = useState('');
+  const [tone, setTone] = useState('');
+  const [discount, setDiscount] = useState('');
   const [targetLanguage, setTargetLanguage] = useState(currentLanguage || 'te');
 
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('whatsapp');
   const [content, setContent] = useState({
-    whatsappMessage: targetLanguage === 'te'
-      ? "రుచికరమైన సాంప్రదాయ మామిడికాయ పచ్చడి ఇప్పుడు మీ ముంగిట! 🌶️🥭\n\nమా స్వచ్ఛమైన నువ్వుల నూనె, గుంటూరు కారంతో ఇంట్లో తయారు చేసిన అసలైన ఆంధ్ర పచ్చడి.\n\n✨ ప్రత్యేక ఆఫర్: పండుగ సందర్భంగా 2kg కొనుగోలుపై 10% రాయితీ!\n📍 ఉచిత లోకల్ డెలివరీ.\n📞 ఆర్డర్ల కోసం ఇప్పుడే సంప్రదించండి: 9876543210\nలక్ష్మి హోమ్‌మేడ్ ఫుడ్స్"
-      : "Crispy & Authentic Homemade Avakaya Mango Pickle at your doorstep! 🌶️🥭\n\nPrepared using traditional Andhra recipes, cold-pressed sesame oil, and authentic Guntur red chillies.\n\n✨ Special Offer: Get 10% OFF on 2kg purchase for this festive season!\n📍 Free local doorstep delivery in town.\n📞 WhatsApp / Call to order: 9876543210\nLakshmi Homemade Foods",
-    socialPost: "Taste the authentic tradition of homemade Mango Pickle! Made with pure cold-pressed oil and zero chemical preservatives. ❤️\n\nOrder today: Special festive introductory prices!\n#HomemadePickles #VocalForLocal #VyaparMitra #AuthenticFlavours",
-    posterText: "🎉 SPECIAL FESTIVAL OFFER! 🎉\n\nFresh Batch of Traditional Mango Pickle\n100% Hygienic • Cold Pressed Oil • Farm Fresh\n\nSpecial Price: Only ₹180 per 1kg Jar\nContact: Lakshmi Homemade Foods - 9876543210"
+    whatsappMessage: '',
+    socialPost: '',
+    posterText: ''
   });
 
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    setTargetLanguage(currentLanguage);
+  }, [currentLanguage]);
 
   const handleGenerate = async (e) => {
     if (e) e.preventDefault();
