@@ -30,7 +30,8 @@ export default {
     signedInAs: "इस नाम से साइन इन",
     defaultBusiness: "लक्ष्मी फूड्स",
     start: "शुरू करें",
-    mobileNavigation: "मोबाइल नेविगेशन"
+    mobileNavigation: "मोबाइल नेविगेशन",
+    businessOpportunity: "व्यापार अवसर"
   },
   login: {
     title: "लॉगिन",

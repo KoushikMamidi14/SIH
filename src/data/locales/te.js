@@ -30,7 +30,8 @@ export default {
     signedInAs: "ఈ పేరుతో సైన్ ఇన్ చేశారు",
     defaultBusiness: "లక్ష్మి ఫుడ్స్",
     start: "ప్రారంభించండి",
-    mobileNavigation: "మొబైల్ నావిగేషన్"
+    mobileNavigation: "మొబైల్ నావిగేషన్",
+    businessOpportunity: "వ్యాపార అవకాశం"
   },
   login: {
     title: "లాగిన్",

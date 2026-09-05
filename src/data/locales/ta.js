@@ -30,7 +30,8 @@ export default {
     signedInAs: "இந்த பெயரில் உள்நுழைந்துள்ளீர்கள்",
     defaultBusiness: "Lakshmi Foods",
     start: "தொடங்குக",
-    mobileNavigation: "மொபைல் வழிசெலுத்தல்"
+    mobileNavigation: "மொபைல் வழிசெலுத்தல்",
+    businessOpportunity: "வணிக வாய்ப்பு"
   },
   login: {
     title: "உள்நுழைவு",

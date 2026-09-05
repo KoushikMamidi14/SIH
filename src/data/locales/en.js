@@ -30,7 +30,8 @@ export default {
     signedInAs: "Signed in as",
     defaultBusiness: "Lakshmi Foods",
     start: "Start",
-    mobileNavigation: "Mobile navigation"
+    mobileNavigation: "Mobile navigation",
+    businessOpportunity: "Business Opportunity"
   },
   login: {
     title: "Login",

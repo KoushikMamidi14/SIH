@@ -24,6 +24,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   const navItems = [
     { to: '/dashboard', label: t.nav?.dashboard, icon: LayoutDashboard },
     { to: '/business-discovery', label: t.nav?.discovery, icon: Compass, badge: t.nav?.phaseOne },
+    { to: '/business-opportunity', label: t.nav?.businessOpportunity, icon: Compass },
     { to: '/assistant', label: t.nav?.assistant, icon: Sparkles, highlight: true },
     { to: '/calculator', label: t.nav?.calculator, icon: Calculator },
     { to: '/sales', label: t.nav?.sales, icon: TrendingUp },

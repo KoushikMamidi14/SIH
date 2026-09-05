@@ -19,16 +19,24 @@ import Products from './pages/Products.jsx';
 import Marketing from './pages/Marketing.jsx';
 import Schemes from './pages/Schemes.jsx';
 import Profile from './pages/Profile.jsx';
+import BusinessOpportunity from './pages/BusinessOpportunity.jsx';
+import LogoIntro from './components/common/LogoIntro.jsx';
+import { useCallback, useState } from 'react';
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
+  const completeIntro = useCallback(() => setShowIntro(false), []);
+
   return (
     <LanguageProvider>
+      {showIntro && <LogoIntro onComplete={completeIntro} />}
       <AuthProvider>
         <BusinessProvider>
           <Routes>
             <Route element={<AppLayout />}>
               <Route path="/" element={<Landing />} />
               <Route path="/business-discovery" element={<BusinessDiscovery />} />
+              <Route path="/business-opportunity" element={<BusinessOpportunity />} />
               <Route path="/onboarding" element={<Onboarding />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/assistant" element={<Assistant />} />
