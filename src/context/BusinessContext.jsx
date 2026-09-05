@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { businessService, productService, salesService, expenseService } from '../services/api.js';
+import { businessService, productService, salesService, expenseService, locationService } from '../services/api.js';
+import { useAuth } from './AuthContext.jsx';
 
 const BusinessContext = createContext();
 
@@ -8,7 +9,10 @@ export const BusinessProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [sales, setSales] = useState([]);
   const [expenses, setExpenses] = useState([]);
+  const [location, setLocation] = useState(null);
+  const [nearbyMarkets, setNearbyMarkets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { isAuthenticated } = useAuth();
 
   const refreshAll = useCallback(async () => {
     setLoading(true);
@@ -34,6 +38,27 @@ export const BusinessProvider = ({ children }) => {
   useEffect(() => {
     refreshAll();
   }, [refreshAll]);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    locationService.getLocation()
+      .then((res) => setLocation(res?.data || null))
+      .catch(() => setLocation(null));
+  }, [isAuthenticated]);
+
+  const saveLocation = async (latitude, longitude) => {
+    const res = await locationService.saveLocation(latitude, longitude);
+    const savedLocation = res?.data || res;
+    setLocation(savedLocation);
+    return savedLocation;
+  };
+
+  const loadNearbyMarkets = async () => {
+    const res = await locationService.getNearbyMarkets();
+    const markets = res?.data || [];
+    setNearbyMarkets(markets);
+    return markets;
+  };
 
   const updateBusiness = async (data) => {
     if (!business) return;
@@ -99,7 +124,11 @@ export const BusinessProvider = ({ children }) => {
       updateProduct,
       deleteProduct,
       addSale,
-      addExpense
+      addExpense,
+      location,
+      nearbyMarkets,
+      saveLocation,
+      loadNearbyMarkets
     }}>
       {children}
     </BusinessContext.Provider>

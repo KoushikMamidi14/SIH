@@ -167,6 +167,12 @@ export const businessService = {
   }
 };
 
+export const locationService = {
+  saveLocation: async (latitude, longitude) => API.post('/location', { latitude, longitude }),
+  getLocation: async () => API.get('/location'),
+  getNearbyMarkets: async () => API.get('/market/nearby')
+};
+
 export const productService = {
   getProducts: async () => {
     try {

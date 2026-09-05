@@ -5,6 +5,7 @@ import { useBusiness } from '../context/BusinessContext.jsx';
 import { aiService } from '../services/api.js';
 import VoiceInputButton from '../components/common/VoiceInputButton.jsx';
 import LoadingSpinner from '../components/common/LoadingSpinner.jsx';
+import LocationPicker from '../components/common/LocationPicker.jsx';
 import { formatCurrency } from '../utils/formatters.js';
 import {
   Compass,
@@ -23,7 +24,7 @@ import {
 
 const BusinessDiscovery = () => {
   const { t, currentLanguage } = useLanguage();
-  const { updateBusiness } = useBusiness();
+  const { updateBusiness, location: savedLocation, saveLocation, loadNearbyMarkets } = useBusiness();
   const navigate = useNavigate();
 
   // Form State
@@ -39,6 +40,15 @@ const BusinessDiscovery = () => {
   const [loading, setLoading] = useState(false);
   const [recommendation, setRecommendation] = useState(null);
   const [error, setError] = useState(null);
+
+  const handleLocationSaved = async (latitude, longitude) => {
+    const resolved = await saveLocation(latitude, longitude);
+    const resolvedLocation = resolved?.display_name || resolved?.city || '';
+    setLocation(resolvedLocation);
+    setState(resolved?.state || '');
+    await loadNearbyMarkets();
+    return resolved;
+  };
 
   const handleDiscoverySubmit = async (e) => {
     e.preventDefault();
@@ -104,6 +114,8 @@ const BusinessDiscovery = () => {
           {t.discovery?.subtitle || 'Enter your budget, location, and skills to get AI-recommended rural businesses tailored for you.'}
         </p>
       </div>
+
+      <LocationPicker location={savedLocation} onSaved={handleLocationSaved} />
 
       {/* Input Form Card */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm">

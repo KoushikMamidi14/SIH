@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useBusiness } from '../context/BusinessContext.jsx';
 import { useLanguage } from '../context/LanguageContext.jsx';
+import LocationPicker from '../components/common/LocationPicker.jsx';
 import { Store, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Onboarding = () => {
   const { t } = useLanguage();
-  const { business, updateBusiness } = useBusiness();
+  const { business, updateBusiness, location: savedLocation, saveLocation, loadNearbyMarkets } = useBusiness();
   const navigate = useNavigate();
 
   const [bizName, setBizName] = useState('');
@@ -15,6 +16,19 @@ const Onboarding = () => {
   const [state, setState] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const handleLocationSaved = async (latitude, longitude) => {
+    const resolved = await saveLocation(latitude, longitude);
+    const resolvedLabel = resolved?.display_name || resolved?.city || '';
+    setLocation(resolvedLabel);
+    setState(resolved?.state || '');
+    try {
+      await loadNearbyMarkets();
+    } catch {
+      // Location remains saved even if the optional nearby-market request fails.
+    }
+    return resolved;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +61,8 @@ const Onboarding = () => {
             <p className="text-xs text-slate-500">Configure your business to personalize AI insights and financial calculations</p>
           </div>
         </div>
+
+          <LocationPicker location={savedLocation} onSaved={handleLocationSaved} />
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
